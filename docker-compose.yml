@@ -1,0 +1,40 @@
+services:
+  frontend:
+    build: .  # Construye la imagen desde el Dockerfile en el directorio actual
+    command: npm run dev  # Ejecuta la aplicación en modo desarrollo
+    ports:
+      - "127.0.0.1:4000:3001"  # Redirige el puerto 3001 del contenedor al 4000 del host
+    volumes:
+      - .:/app  # Sincroniza los archivos locales con el contenedor para reflejar cambios en caliente
+    environment:
+      - NODE_ENV=development  # Define el entorno de desarrollo
+    depends_on:
+      database:
+        condition: service_healthy  # Asegura que la base de datos esté lista antes de iniciar el frontend
+    networks:
+      - app_network  # Conecta el servicio a la red compartida
+
+  database:
+    image: mysql:8.0  # Usa la imagen oficial de MySQL 8.0
+    container_name: database
+    restart: always  # Reinicia el contenedor si se detiene
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # Define credenciales de MySQL
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    command: --default-authentication-plugin=mysql_native_password  # Usa autenticación compatible con clientes antiguos
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persistencia de los datos en el volumen
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]  # Verifica que la BD esté en funcionamiento
+      interval: 10s
+      retries: 3
+    networks:
+      - app_network  # Conecta la base de datos a la red compartida
+
+volumes:
+  mysql_data:  # Volumen persistente para la base de datos
+
+networks:
+  app_network:  # Red de comunicación entre servicios

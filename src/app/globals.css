@@ -1,0 +1,131 @@
+/* global.css */
+
+/* ============================
+   Importación de Fuentes
+============================ */
+/* Se importa la fuente 'Eczar' desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400;600;700&display=swap');
+
+/* ============================
+   Variables Globales
+============================ */
+:root {
+  /* Tipografía */
+  --font-family-base: 'Eczar', serif;
+  --font-size-base: 16px;
+  --font-size-title: 2rem;  /* Aumentado para títulos de tarjetas */
+  --font-size-subtitle: 1rem;
+  --line-height-base: 1.5;
+
+  /* Espaciado y box model */
+  --body-margin: 0;
+  --body-padding: 0;
+  --box-sizing-base: border-box;
+
+  /* Paleta de colores */
+  --color-primary: #0a73dc;    /* Azul principal */
+  --color-secondary: #1e4e7f;  /* Azul oscuro */
+  --color-blackish: #070b0f;   /* Casi negro */
+  --color-background: #d6d6d6; /* Fondo claro */
+
+  /* Altura mínima para las tarjetas */
+  --card-min-height: 450px; 
+}
+
+/* ============================
+   Estilos Globales
+============================ */
+/* Estilos básicos para el body de la página */
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  margin: var(--body-margin);
+  padding: var(--body-padding);
+  box-sizing: var(--box-sizing-base);
+  color: var(--color-blackish);
+  background-color: var(--color-background);
+}
+
+/* ============================
+   Estilos para Titulares Generales
+============================ */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ============================
+   Estilos para Párrafos
+============================ */
+p {
+  margin-bottom: 1em;
+}
+
+/* ============================
+   Estilos para Encabezado de Planes
+============================ */
+.plan-title {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.plan-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-secondary);
+  font-family: var(--font-family-base);
+  margin-bottom: 2rem;
+}
+
+/* ============================
+   Estilos para Tarjetas
+============================ */
+/* Títulos y textos dentro de las tarjetas */
+/* Se aumenta la especificidad para sobrescribir reglas de Bootstrap */
+html body .card-title {
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  margin-bottom: 1em;
+}
+
+.card-text,
+.text-muted {
+  font-size: var(--font-size-subtitle);
+  line-height: var(--line-height-base);
+  text-align: center;
+}
+
+/* ============================
+   Estilos para Botones
+============================ */
+/* Se aumenta la especificidad para los botones primarios */
+html body .btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+html body .btn-primary:hover {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+/* Clase personalizada para botones grandes (.btn-ui) */
+.btn-ui {
+  min-width: 220px;              /* Ancho mínimo para un botón más amplio */
+  font-size: 1.125rem;
+  padding: 1rem 1.5rem;           /* Espaciado interno para mayor visibilidad */
+  border-radius: 0.5rem;          /* Bordes redondeados */
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);  /* Sombra para dar profundidad */
+  letter-spacing: 0.5px;
+}
+
+.btn-ui:hover {
+  transform: translateY(-2px);   /* Efecto de elevación al pasar el ratón */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);   /* Sombra más marcada en hover */
+}

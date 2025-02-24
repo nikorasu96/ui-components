@@ -1,0 +1,6 @@
+# Ignorar archivos y carpetas innecesarias para reducir el tamaño de la imagen
+node_modules     # Dependencias de npm que se instalan en el contenedor
+.next            # Archivos generados por Next.js
+.git            # Carpeta de Git con historial de cambios
+.env            # Variables de entorno con información sensible
+*.log           # Archivos de logs que no se necesitan en la imagen
